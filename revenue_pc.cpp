@@ -1,5 +1,5 @@
 /**
- * @file revenue_pb.cpp
+ * @file revenue_pc.cpp
  * @author Lucas Pinto
  * @brief Solution to HW6 problems from CS477. 
  * @version 0.1
