@@ -28,14 +28,27 @@ const int types = 3;
 // Types enumerated as 3 despite table not giving a third type, as its an easy way to denote "no action". 
 // Although, this is more a convention than a modification of the given table (i.e. easier to code/read)
 // Row-Col notation, where Row = Day-1 (1-4) and Cols are enumerated as 0-2 (0 = REPAIR, 1 = CONSTRUCT, 2 = NONE)
-int array2D[days][types] = { {1000, 500, 0}, 
+int values[days][types] = { {1000, 500, 0}, 
                                 {100, 5000, 0}, 
                                 {1000, 500, 0}, 
                                 {1000, 100, 0}};
 
 #pragma endregion
 
+#pragma region "Functions"
+//==========================================================================
+// Functions
+//==========================================================================
+
+
+#pragma endregion
+
+#pragma region "Main Program"
+//=========================================================================
+// Main program
+//=========================================================================
 int main(){
     std::cout << "Hello World!" << std::endl;
     return 0;
 }
+#pragma endregion
