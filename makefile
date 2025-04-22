@@ -10,4 +10,4 @@ runD: revenue_pd.cpp
 	g++ revenue_pd.cpp -o runD
 
 clean:
-	rm -f run
+	rm -f runB runC runD
