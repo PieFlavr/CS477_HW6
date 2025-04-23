@@ -73,16 +73,16 @@ void print_line(const std::string& day, const std::string& optimal_value, int ca
 int total_max_revenue_pb(const int& i, int values[days][types], const int& max_days){
     // Base case: if day is 0, return 0 (no revenue)
     int return_value = 0;
-    if (i <= 0) {
+    if (i < 0) {
         return_value = 0;
     } else if (i > max_days){ // Invalid Case: if day is greater than max_days, use maximm possible total return at max_days
         return_value = total_max_revenue_pb(i - 1, values, max_days);
     } else {
         // Recursive case: calculate the maximum possible revenue for the current day using the previous two possible days
         return_value =  std::max<int>(
-            values[i - 1][REPAIR] + total_max_revenue_pb(i - 1, values, max_days), // Repair, r_i + T_(i-1)
+            values[i][REPAIR] + total_max_revenue_pb(i - 1, values, max_days), // Repair, r_i + T_(i-1)
             std::max<int>(
-                values[i - 1][CONSTRUCT] + total_max_revenue_pb(i - 2, values, max_days), // Construct, c_i + T_(i-2)
+                values[i][CONSTRUCT] + total_max_revenue_pb(i - 2, values, max_days), // Construct, c_i + T_(i-2)
                 total_max_revenue_pb(i - 1, values, max_days) // None, T_(i-1)
             )
         );
@@ -107,20 +107,22 @@ int main(){
         std::cerr << "Error: Could not create or open the file " << file_name << "." << std::endl;
         return 1; // Exit with error code
     }
-    std::cout << "File 'output.txt' created successfully." << std::endl;
+    std::cout << "File " << file_name << " created successfully." << std::endl;
 
     std::ostream& output = output_file; //std::cout Change to output_file if you want to write to file
+
+    output << "Optimal Total Revenue: " << total_max_revenue_pb(days-1, values, days) << std::endl;
 
     print_line("Day", "Optimal Value", category_width, output);
     for(int i = 0; i < category_width * 3; ++i) {
         output << "-";
     }
     output << std::endl;
-    print_line("0", std::to_string(total_max_revenue_pb(0, values, days)) + " (base case)", category_width, output);
-    print_line("1", std::to_string(total_max_revenue_pb(1, values, days)) + " (ends up unused)", category_width, output);
-    print_line("2", std::to_string(total_max_revenue_pb(2, values, days)), category_width, output);
-    print_line("3", std::to_string(total_max_revenue_pb(3, values, days)), category_width, output);
-    print_line("4", std::to_string(total_max_revenue_pb(4, values, days)), category_width, output);
+    print_line("0", "0 (base case)", category_width, output);
+    print_line("1", std::to_string(total_max_revenue_pb(0, values, days)) + " (ends up unused)", category_width, output);
+    print_line("2", std::to_string(total_max_revenue_pb(1, values, days)), category_width, output);
+    print_line("3", std::to_string(total_max_revenue_pb(2, values, days)), category_width, output);
+    print_line("4", std::to_string(total_max_revenue_pb(3, values, days)), category_width, output);
 
     return 0;
 }
