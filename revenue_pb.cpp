@@ -111,7 +111,7 @@ int main(){
 
     std::ostream& output = output_file; //std::cout Change to output_file if you want to write to file
 
-    print_line("Day", "Optimal Value", category_width, output);
+    print_line("Day", "Optimal Sub-Value (up-to-day)", category_width, output);
     for(int i = 0; i < category_width * 3; ++i) {
         output << "-";
     }
@@ -123,7 +123,7 @@ int main(){
     print_line("4", std::to_string(total_max_revenue_pb(3, values, days)), category_width, output);
 
     output << "Optimal Total Revenue: " << total_max_revenue_pb(days-1, values, days) << std::endl;
-    
+
     return 0;
 }
 #pragma endregion

@@ -1,4 +1,4 @@
-Day                       | Optimal Value             | 
+Day                       | Optimal Sub-Value (up-to-day) | 
 ---------------------------------------------------------------------------
 0                         | 0 (base case)             | 
 1                         | 1000 (ends up unused)     | 

@@ -1,4 +1,4 @@
-Day                       | Optimal Value             | Choice                    | 
+Day                       | Optimal Overall Value     | Cached Choice             | 
 -----------------------------------------------------------------------------------------------------------------------------
 0                         | 0 (base case)             | N/A                       | 
 1                         | 0                         | NONE                      | 

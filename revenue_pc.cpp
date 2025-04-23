@@ -183,7 +183,7 @@ int main(){
 
     std::ostream& output = output_file; //std::cout Change to output_file if you want to write to file
 
-    print_line("Day", "Optimal Value", "Choice", category_width, output);
+    print_line("Day", "Optimal Overall Value", "Cached Choice", category_width, output);
     for(int i = 0; i < category_width * 5; ++i) {
         output << "-";
     }
