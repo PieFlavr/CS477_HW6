@@ -122,6 +122,9 @@ if (i < 0) {
 } else if (i > max_days) { // Invalid Case: if day is greater than max_days, use maximum possible total return at max_days
     int i_1_revenue = get_choice_cache(i - 1, max_days, choice);
     return_value = i_1_revenue;
+} else if (choice[i] != INVALID) { // Check if the choice for the current day is already calculated
+    return_value = get_choice_cache(i, max_days, choice) + total_max_revenue_pb(i - 1, values, max_days, choice); // Get cached choice and then recurse
+
 } else {
     // Recursive case: calculate the maximum possible revenue for the current day using the previous two possible days
     int i_1_revenue = get_choice_cache(i - 1, max_days, choice);
@@ -175,7 +178,6 @@ int main(){
     }
 
     total_max_revenue_pb(days-1, values, days, choice); // Pre-calculate everything to avoid printing garbage
-    reset_choice_cache(choice); // Reset choice cache for the next day
 
     std::cout << "File " << file_name << " created successfully." << std::endl;
 
@@ -187,20 +189,14 @@ int main(){
     }
     output << std::endl;
 
-    // Must reset choice cache for each day since we are NOT using a GREEDY ALGORITHM
     // The "optimal choice" at each sub-problem is not necessarily the optimal choice for the entire problem
     // If a choice is calculated calculated in the original problem, then it is not necessarily the optimal choice for the particular sub-problem
-    // That is to say, this is a recursive algorithm for sets of TWO DAYs, not a greedy algorithm for sets of ONE DAYs
+    // That is to say, this is NOT a GREEDY ALGORITHM, hence why the cached choice for DAY 1 does not match the "pure" recursively calculated choice for DAY 1 in B)
     print_line("0", "0 (base case)", "N/A", category_width, output);
-    reset_choice_cache(choice_cache); // Reset choice cache for the next day
-    print_line("1", std::to_string(total_max_revenue_pb(0, values, days, choice_cache)) + " (ends up unused)", action_to_string(choice[0]), category_width, output);
-    reset_choice_cache(choice_cache); // Reset choice cache for the next day
-    print_line("2", std::to_string(total_max_revenue_pb(1, values, days, choice_cache)), action_to_string(choice[1]), category_width, output);
-    reset_choice_cache(choice_cache); // Reset choice cache for the next day
-    print_line("3", std::to_string(total_max_revenue_pb(2, values, days, choice_cache)), action_to_string(choice[2]), category_width, output);
-    reset_choice_cache(choice_cache); // Reset choice cache for the next day
-    print_line("4", std::to_string(total_max_revenue_pb(3, values, days, choice_cache)), action_to_string(choice[3]), category_width, output);
-    reset_choice_cache(choice_cache); // Reset choice cache for the next day
+    print_line("1", std::to_string(total_max_revenue_pb(0, values, days, choice)), action_to_string(choice[0]), category_width, output);
+    print_line("2", std::to_string(total_max_revenue_pb(1, values, days, choice)), action_to_string(choice[1]), category_width, output);
+    print_line("3", std::to_string(total_max_revenue_pb(2, values, days, choice)), action_to_string(choice[2]), category_width, output);
+    print_line("4", std::to_string(total_max_revenue_pb(3, values, days, choice)), action_to_string(choice[3]), category_width, output);
     output << "Optimal Total Revenue: " << total_max_revenue_pb(days-1, values, days, choice) << std::endl;
 
     return 0;
