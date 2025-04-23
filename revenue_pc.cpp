@@ -164,7 +164,7 @@ void reset_choice_cache(Action* choice) {
 //=========================================================================
 int main(){
     std::cout << "Hello World!" << std::endl;
-    std::string file_name = "revenue_pc.txt";
+    std::string file_name = "revenue_pc_out.txt";
     int category_width = 25;
 
     // File creation and validation
@@ -174,13 +174,12 @@ int main(){
         return 1; // Exit with error code
     }
 
-    //action_to_string(choice[3]); // Pre-calculate everything to avoid printing garbage
+    total_max_revenue_pb(days-1, values, days, choice); // Pre-calculate everything to avoid printing garbage
+    reset_choice_cache(choice); // Reset choice cache for the next day
 
     std::cout << "File " << file_name << " created successfully." << std::endl;
 
     std::ostream& output = output_file; //std::cout Change to output_file if you want to write to file
-    
-    output << "Optimal Total Revenue: " << total_max_revenue_pb(days-1, values, days, choice) << std::endl;
 
     print_line("Day", "Optimal Value", "Choice", category_width, output);
     for(int i = 0; i < category_width * 5; ++i) {
@@ -202,6 +201,7 @@ int main(){
     reset_choice_cache(choice_cache); // Reset choice cache for the next day
     print_line("4", std::to_string(total_max_revenue_pb(3, values, days, choice_cache)), action_to_string(choice[3]), category_width, output);
     reset_choice_cache(choice_cache); // Reset choice cache for the next day
+    output << "Optimal Total Revenue: " << total_max_revenue_pb(days-1, values, days, choice) << std::endl;
 
     return 0;
 }

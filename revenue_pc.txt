@@ -1,8 +1,0 @@
-Optimal Total Revenue: 7000
-Day                       | Optimal Value             | Choice                    | 
------------------------------------------------------------------------------------------------------------------------------
-0                         | 0 (base case)             | N/A                       | 
-1                         | 1000 (ends up unused)     | NONE                      | 
-2                         | 5000                      | CONSTRUCT                 | 
-3                         | 6000                      | REPAIR                    | 
-4                         | 7000                      | REPAIR                    | 

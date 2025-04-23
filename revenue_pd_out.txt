@@ -1,0 +1,7 @@
+Day                       | Choice                    | 
+---------------------------------------------------------------------------
+0                         | NONE                      | 
+1                         | CONSTRUCT                 | 
+2                         | REPAIR                    | 
+3                         | REPAIR                    | 
+Optimal Total Revenue: 7000

@@ -1,4 +1,3 @@
-Optimal Total Revenue: 7000
 Day                       | Optimal Value             | 
 ---------------------------------------------------------------------------
 0                         | 0 (base case)             | 
@@ -6,3 +5,4 @@ Day                       | Optimal Value             |
 2                         | 5000                      | 
 3                         | 6000                      | 
 4                         | 7000                      | 
+Optimal Total Revenue: 7000
